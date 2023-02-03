@@ -58,6 +58,24 @@ here](/submissions.html)!
 These flagship ZeroVer projects know how to get the most out of their
 zeroes.
 
+*Currently none! The fact is that all of the previously mentioned projects have departed (this is really awkward...). See [Featured Emireti](#featured-emireti). I probably fill this with some other projects.*
+
+
+# Selected Emeriti
+
+Dearly departed from the school of ZeroVer, either from above or from
+legend. We remember them fondly.
+
+<!-- see projects.yaml/json for source material of table below -->
+[EMERITUS_PROJECT_TABLE]
+
+<br/>With any luck, these projects will realize their folly.
+
+# Featured Emireti
+
+These former flagship ZeroVer projects knew how to get the most out of their
+zeroes.
+
 ## HashiCorp Vault and Terraform
 
 <img align="left" style="padding-right: 15px" width="15%" src="/uploads/vault_logo.png">
@@ -166,15 +184,6 @@ That's the power of a streamlined and minimal ZeroVer version.
 [ssleay_cpan]: http://search.cpan.org/~mikem/Net-SSLeay-1.85/lib/Net/SSLeay.pod
 [openssl_changelog]: https://www.openssl.org/news/changelog.html
 
-# Selected Emeriti
-
-Dearly departed from the school of ZeroVer, either from above or from
-legend. We remember them fondly.
-
-<!-- see projects.yaml/json for source material of table below -->
-[EMERITUS_PROJECT_TABLE]
-
-<br/>With any luck, these projects will realize their folly.
 
 # More info
 
