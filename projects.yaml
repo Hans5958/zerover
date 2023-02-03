@@ -52,9 +52,9 @@ projects:
   - name: Werkzeug
     gh_url: https://github.com/pallets/werkzeug
     reason: Depended on by Flask and many other web frameworks.
-  - name: docutils
-    gh_url: https://github.com/docutils-mirror/docutils
-    reason: Depended on by Sphinx and most of the content on ReadTheDocs. The reference implementation of ReStructuredText, the inspiration for Markdown.
+  # - name: docutils
+  #   gh_url: https://github.com/docutils-mirror/docutils
+  #   reason: Depended on by Sphinx and most of the content on ReadTheDocs. The reference implementation of ReStructuredText, the inspiration for Markdown.
   - name: Cython
     gh_url: https://github.com/cython/cython
   - name: TOML
@@ -251,7 +251,7 @@ projects:
     gh_url: https://github.com/simonw/datasette
   - name: Tendermint
     gh_url: https://github.com/tendermint/tendermint/
-  - name: Cosmos-sdk
+  - name: Cosmos SDK
     gh_url: https://github.com/cosmos/cosmos-sdk
   - name: LocalStack
     url: https://localstack.cloud
@@ -293,6 +293,48 @@ projects:
   - name: Pyre
     url: https://pyre-check.org
     gh_url: https://github.com/facebook/pyre-check
+  - name: Metabase
+    url: https://metabase.com/
+    gh_url: https://github.com/metabase/metabase
+  - name: Fabric API
+    gh_url: https://github.com/FabricMC/fabric
+  - name: Woodpecker
+    url: https://woodpecker-ci.org/
+    gh_url: https://github.com/woodpecker-ci/woodpecker
+  - name: Phoenix LiveView
+    gh_url: https://github.com/phoenixframework/phoenix_live_view
+  - name: OpenBLAS
+    gh_url: https://github.com/xianyi/OpenBLAS
+    url: https://www.openblas.net/
+  - name: Qiskit
+    url: https://qiskit.org/
+    gh_url: https://github.com/Qiskit/qiskit
+    reason: Qiskit is the most popular quantum computing SDK according to Unitary Fund Quantum Open Source Software survey in 2022.
+  - name: Ruff
+    gh_url: https://github.com/charliermarsh/ruff
+  - name: Zig
+    url: https://ziglang.org
+    gh_url: https://github.com/ziglang/zig
+  - name: pbkit
+    url: https://pbkit.dev/
+    gh_url: https://github.com/pbkit/pbkit
+  - name: python-dotenv
+    gh_url: https://github.com/theskumar/python-dotenv
+    reason: 8 years under development, core part of many libraries.
+  - name: Tachiyomi
+    url: https://tachiyomi.org/
+    gh_url: https://github.com/tachiyomiorg/tachiyomi
+    reason: Rewrite is supposed to release as 1.0.0, but it has been stale and in progress for several years with no finish line in sight.
+  - name: brick/math
+    gh_url: https://github.com/brick/math
+  - name: MultiMC
+    gh_url: https://github.com/MultiMC/Launcher
+    url: https://multimc.org/
+  - name: libc (Rust)
+    gh_url: https://github.com/rust-lang/libc
+  - name: esbuild
+    url: https://esbuild.github.io
+    gh_url: https://github.com/evanw/esbuild
 
   # Non-GitHub projects below, manually updated
 
@@ -308,8 +350,8 @@ projects:
     url: https://git.kernel.org/pub/scm/utils/dash/dash.git
     first_release_date: 1997-06-19T09:29:16
     first_release_version: 0.3.1
-    latest_release_date: 2016-09-23T14:51:58
-    latest_release_version: 0.5.9.1
+    latest_release_date: 2022-12-11T06:33:43
+    latest_release_version: 0.5.12
   - name: Inkscape
     url: https://launchpad.net/inkscape
     emeritus: true
@@ -319,15 +361,15 @@ projects:
     last_zv_release_version: 0.92.5
   - name: Compiz
     first_release_date: 2006-05-22
-    latest_release_date: 2016-11-11
-    latest_release_version: 0.9.13.1
+    latest_release_date: 2022-08-22
+    latest_release_version: 0.9.14.2
     url: https://launchpad.net/compiz
   - name: distlib
     first_release_version: 0.1.0
     first_release_date: 2013-03-02
-    latest_release_version: 0.2.6
-    latest_release_date: 2017-10-28
-    url: https://bitbucket.org/pypa/distlib
+    latest_release_version: 0.3.5
+    latest_release_date: 2022-07-14
+    url: https://github.com/pypa/distlib
     reason: Depended on by pypa/pip
   - name: OpenSSL
     url: https://github.com/openssl/openssl
@@ -361,8 +403,8 @@ projects:
     url: https://www.chiark.greenend.org.uk/~sgtatham/putty/
     first_release_version: 0.43beta
     first_release_date: 1999-01-08
-    latest_release_version: 0.70
-    latest_release_date: 2017-07-04T19:29:54
+    latest_release_version: 0.78
+    latest_release_date: 2022-10-29
     reason: Probably the most popular SSH client in Windows history
   - name: MAME
     url: https://github.com/mamedev/mame
@@ -371,9 +413,9 @@ projects:
     first_release_version: 0.1
     first_release_date: 1997-02-05
     latest_release_version: 0.196
-    latest_release_date: 2018-03-28
-    release_count: 196
-    release_count_zv: 196
+    latest_release_date: 2022-12-30
+    release_count: 251
+    release_count_zv: 251
   - name: slrn  # thanks hynek
     url: http://slrn.sourceforge.net/
     wp_url: https://en.wikipedia.org/wiki/Slrn
@@ -389,17 +431,19 @@ projects:
     url: http://www.bay12games.com/dwarves/
     first_release_date: 2006-08-08
     first_release_version: 0.21.93.19a
-    latest_release_date: 2018-04-01
-    latest_release_version: 0.44.09
-    release_count: 142  # appx, based on df wiki release history
+    last_zv_release_date: 2021-01-28
+    last_zv_release_version: 0.47.05
+    first_nonzv_release_date: 2022-12-22
+    emeritus: true
+    release_count: 150  # appx, based on df wiki release history
   - name: "Cataclysm: Dark Days Ahead"
     url: https://cataclysmdda.org
-    # gh_url: https://github.com/CleverRaven/Cataclysm-DDA  # gh is returning tags out of order
+    _gh_url: https://github.com/CleverRaven/Cataclysm-DDA  # gh is returning tags out of order
     reason: Immensely popular cross-platform open-source game under continuous development for 6 years.
     first_release_version: 0.1
     first_release_date: 2013-02-26
-    latest_release_version: 0.C
-    latest_release_date: 2015-03-19
+    latest_release_version: 0.F-3
+    latest_release_date: 2021-11-27
     release_count: 15
     release_count_zv: 15
     star_count: 1775
@@ -417,8 +461,8 @@ projects:
     reason: A free Windows-compatible Operating System
     first_release_version: 0.0.7
     first_release_date: 1996-01-23
-    latest_release_version: 0.4.9
-    latest_release_date: 2018-07-23
+    latest_release_version: 0.4.14
+    latest_release_date: 2021-12-17
     release_count: 55  # ignore github saying >250 releases, ~80% of them are some kind of weird backup non-releases
     release_count_zv: 55
     star_count: 4912
@@ -437,8 +481,8 @@ projects:
     _gh_url: https://github.com/mrdoob/three.js
     first_release_version: 0.1  # github releases are r1-r130
     first_release_date: 2013-07-03T11:49:48
-    latest_release_version: 0.130
-    latest_release_date: 2021-10-04T18:49:30
+    latest_release_version: 0.149
+    latest_release_date: 2023-01-26T14:35:43
     release_count: 133
     release_count_zc: 133
     star_count: 75000
@@ -451,8 +495,8 @@ projects:
     _gh_url: https://github.com/googleapis/google-api-ruby-client
     first_release_version: 0.1.0
     first_release_date: 2010-10-14
-    latest_release_version: 0.53.0
-    latest_release_date: 2021-01-18
+    latest_release_version: 0.10.0
+    latest_release_date: 2023-01-27
     release_count: 201
     star_count: 2400
   - name: rand
@@ -465,9 +509,6 @@ projects:
     latest_release_date: 2021-06-15
     release_count: 67
     star_count: 881
-  - name: esbuild
-    url: https://esbuild.github.io
-    gh_url: https://github.com/evanw/esbuild
   - name: suhosin
     url: https://suhosin.org/
     _gh_url: https://github.com/sektioneins/suhosin
@@ -481,8 +522,8 @@ projects:
     url: https://puredata.info/
     first_release_date: 1996-06-01
     first_release_version: 0.1
-    latest_release_version: 0.52-1
-    latest_release_date: 2021-12-19
+    latest_release_version: 0.53-1
+    latest_release_date: 2022-12-13
   - name: XeTeX
     wp_url: https://en.wikipedia.org/wiki/XeTeX
     url: http://xetex.sourceforge.net/
@@ -490,3 +531,10 @@ projects:
     first_release_version: 0.3
     latest_release_version: 0.999992
     latest_release_date: 2020-01-20
+  - name: 0 A.D.
+    wp_url: https://en.wikipedia.org/wiki/0_A.D._(video_game)
+    url: https://play0ad.com/
+    first_release_date: 2010-08-16
+    first_release_version: 0.0.1
+    latest_release_version: 0.0.26
+    latest_release_date: 2022-09-24
