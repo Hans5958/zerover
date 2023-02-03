@@ -19,5 +19,5 @@ Simply include the project name, link, and reasoning in [an issue][new_issue] or
 standing by!
 
 
-[new_issue]: https://github.com/mahmoud/zerover/issues/new
-[prs]: https://github.com/mahmoud/zerover/pulls
+[new_issue]: https://github.com/Hans5958/zerover/issues/new
+[prs]: https://github.com/Hans5958/zerover/pulls

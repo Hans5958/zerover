@@ -44,11 +44,11 @@ or notes about research here. -->
 
 ## One more thing
 
-Since you've made it this far, why not consider filing [a PR](https://github.com/mahmoud/zerover/pulls)?
+Since you've made it this far, why not consider filing [a PR](https://github.com/Hans5958/zerover/pulls)?
 
 If your suggestion is a GitHub project, it's as easy as adding 2-3
 lines to the `projects.yaml` file. There are comments and plenty of
-examples in the file. Here's [an edit link](https://github.com/mahmoud/zerover/edit/master/projects.yaml).
+examples in the file. Here's [an edit link](https://github.com/Hans5958/zerover/edit/master/projects.yaml).
 
 No pressure or anything, feel free to smack that submit button, too! Thanks again!
 

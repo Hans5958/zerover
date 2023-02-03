@@ -8,7 +8,7 @@ import sys
 import json
 import time
 import base64
-import urllib2
+import urllib.request
 import datetime
 from pprint import pprint
 
@@ -57,16 +57,15 @@ def _get_gh_json(url):
     Get paginated results from GitHub, possibly authorized based on
     GH_USER/GH_TOKEN env vars.
     """
-    gh_user = os.getenv('GH_USER', '')
     gh_token = os.getenv('GH_TOKEN', '')
-    req = urllib2.Request(url)
-    if gh_user and gh_token:
-        auth_header_val = 'Basic %s' % base64.b64encode('%s:%s' % (gh_user, gh_token))
+    req = urllib.request.Request(url)
+    if gh_token:
+        auth_header_val = f'token {gh_token}'
         req.add_header('Authorization', auth_header_val)
-    resp = urllib2.urlopen(req)
+    resp = urllib.request.urlopen(req)
     body = resp.read()
     res = json.loads(body)
-    rate_rem = int(resp.info().dict.get('x-ratelimit-remaining', '-1'))
+    rate_rem = int(resp.headers.get('x-ratelimit-remaining', '-1'))
 
     if not isinstance(res, list) or not res:
         print(' (( %s requests remaining' % rate_rem)
@@ -75,15 +74,15 @@ def _get_gh_json(url):
     ret = res
     while res:
         paged_url = url + '?page=%s' % page
-        req = urllib2.Request(paged_url)
-        if gh_user and gh_token:
+        req = urllib.request.Request(paged_url)
+        if gh_token:
             req.add_header('Authorization', auth_header_val)
-        resp = urllib2.urlopen(req)
+        resp = urllib.request.urlopen(req)
         body = resp.read()
         res = json.loads(body)
         ret.extend(res)
         page += 1
-    rate_rem = int(resp.info().dict.get('x-ratelimit-remaining', '-1'))
+    rate_rem = int(resp.headers.get('x-ratelimit-remaining', '-1'))
     print(' (( %s requests remaining' % rate_rem)
     return ret
 
@@ -183,8 +182,11 @@ def fetch_entries(projects):
         info['url'] = info.get('url', info.get('gh_url'))
 
         if info.get('gh_url'):
-            gh_info = get_gh_project_info(info)
-            info.update(gh_info)
+            try:
+                gh_info = get_gh_project_info(info)
+                info.update(gh_info)
+            except:
+                pass
 
         info['is_zerover'] = info.get('is_zerover', not info.get('emeritus', False))
 
@@ -196,7 +198,7 @@ def fetch_entries(projects):
 def _main():
     start_time = time.time()
     with open(PROJ_PATH + '/projects.yaml') as f:
-        projects = yaml.load(f)['projects']
+        projects = yaml.safe_load(f)['projects']
     #projects = [p for p in projects if p['name'] == 'scikit-learn']
     #if not projects:
     #    return
@@ -232,7 +234,7 @@ def _main():
            'gen_date': datetime.datetime.utcnow().isoformat(),
            'gen_duration': time.time() - start_time}
 
-    with atomic_save(PROJ_PATH + '/projects.json') as f:
+    with atomic_save(PROJ_PATH + '/projects.json', text_mode=True) as f:
         f.write(json.dumps(res, indent=2, sort_keys=True, default=_json_default))
 
     return
@@ -245,5 +247,5 @@ if __name__ == '__main__':
         if os.getenv('CI'):
             raise
         print(' !! debugging unexpected %r' % e)
-        import pdb;pdb.post_mortem()
+        # import pdb;pdb.post_mortem()
         raise
