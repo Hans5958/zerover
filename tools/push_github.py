@@ -22,7 +22,7 @@ def main():
     for dname, dirs, files in os.walk("site"):
         for fname in files:
             fpath = os.path.join(dname, fname)
-            if fpath.startswith('site\css') or fpath.startswith('site\js') or fpath.startswith('site\img'):
+            if fpath.startswith(f'site{os.path.sep}css') or fpath.startswith(f'site{os.path.sep}js') or fpath.startswith(f'site{os.path.sep}img'):
                 continue
             print(fpath)
             with open(fpath) as f:
