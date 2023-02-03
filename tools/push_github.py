@@ -1,17 +1,8 @@
 
 import os
 import sys
+import re
 from subprocess import check_output, CalledProcessError, STDOUT
-
-
-AUTOCOMMIT_LOGIN = os.getenv('GH_TOKEN', '')
-AUTOCOMMIT_EMAIL = os.getenv('AUTOCOMMIT_EMAIL', 'travis@travis-ci.org')
-AUTOCOMMIT_NAME = os.getenv('AUTOCOMMIT_NAME', 'Travis CI')
-AUTOCOMMIT_BRANCH = os.getenv('AUTOCOMMIT_BRANCH', os.getenv('TRAVIS_BRANCH'))
-AUTOCOMMIT_TARGET = os.getenv('AUTOCOMMIT_TARGET', '.')
-AUTOCOMMIT_PREFIX = os.getenv('AUTOCOMMIT_PREFIX', 'CI autocommit')
-AUTOCOMMIT_CANONICAL_REPO = os.getenv('AUTOCOMMIT_CANONICAL_REPO',
-                                      'https://github.com/mahmoud/zerover.git')
 
 
 def call(args):
@@ -21,40 +12,24 @@ def call(args):
     print(ret)
     return ret
 
-
-def checkout_or_create(branch_name):
-    try:
-        return call(['git', 'checkout', branch_name])
-    except CalledProcessError:
-        return call(['git', 'checkout', '-b', branch_name])
-
-
 def main():
-    branch_name = AUTOCOMMIT_BRANCH
-    if not branch_name:
-        raise RuntimeError('expected AUTOCOMMIT_BRANCH env var to be set')
-    remote_url = call(['git', 'remote', 'get-url', '--push', 'origin']).strip()
-    if not remote_url.startswith('https'):
-        raise RuntimeError('expected HTTPS git remote url, not %r' % remote_url)
-    if remote_url != AUTOCOMMIT_CANONICAL_REPO:
-        print('only committing back to canonical repo (%r), not %r' % (AUTOCOMMIT_CANONICAL_REPO, remote_url))
-        return 0
-    if not call(['git', 'status', '--porcelain']).strip():
-        print('nothing to autocommit, exiting.')
-        return 0
 
-    call(['git', 'config', '--global', 'user.email', AUTOCOMMIT_EMAIL])
-    call(['git', 'config', '--global', 'user.name', AUTOCOMMIT_NAME])
-
-    # see default remotes
-    call(['git', 'remote', '-v'])
-    checkout_or_create(branch_name)
-
-    call(['git', 'add', AUTOCOMMIT_TARGET])
-    call(['git', 'commit', '--message', '%s: %s [skip ci]' % (AUTOCOMMIT_PREFIX, os.getenv('TRAVIS_JOB_WEB_URL'))])
-
-    call(['git', 'remote', 'add', 'origin-autocommit', 'https://%s@github.com/mahmoud/zerover.git' % AUTOCOMMIT_LOGIN])  # TODO
-    call(['git', 'push', '--set-upstream', 'origin-autocommit', branch_name])
+    # chert render
+    # on site, replace:
+    # "\s*?/(?!/)[^>]+?"
+    # incl: site/*
+    # excl: site/css,site/js/
+    for dname, dirs, files in os.walk("site"):
+        for fname in files:
+            fpath = os.path.join(dname, fname)
+            if fpath.startswith('site\css') or fpath.startswith('site\js') or fpath.startswith('site\img'):
+                continue
+            print(fpath)
+            with open(fpath) as f:
+                s = f.read()
+            s = re.sub(r"[\"']\s*?(\/(?!\/|zerover/)[^>]+?)\s*?[\"']", r'"/zerover\1"', s)
+            with open(fpath, "w") as f:
+                f.write(s)
 
     return
 
